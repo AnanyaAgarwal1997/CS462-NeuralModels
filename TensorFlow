@@ -1,0 +1,87 @@
+What is a MaxPooling2D layer? What's it do?
+--> MaxPooling 2D layer is used in convolutional neural networks which downsizes spacial dimensions (width and height) of
+the input spectrum and retain important features by selecting the maximum values from a local region and discarding the rest.
+This allows the model to not only reduce the number of parameters and computational complexity but also learn hierarchical
+representations of input data. This is generally used in image processing tasks. Max Pooling provides a form of translation
+invariance which makes it insensitive to to small shifts in input.
+
+
+What's Adam?
+--> Adam a.k.a Adaptive Moment Estimation which is used in training machine learning models. This is an optimization
+algorithm extended from stochastic gradient descent algorithm to minimize the cost/loss. It uses the concept of moving
+averages to keep track of previous gradients. Adam incorporates bias correction which helps in accelerating convergence
+of optimization.
+
+
+What's the softmax function do?
+--> Softmax function is used to determine the probabilities of each class in a multi class function such that the total
+probability is 1.0.
+
+
+What is CategoricalCrossEntropy? What do we use it for?
+--> CategoricalCrossEntropy is a loss function used in machine learning. It uses softmax function for probability distribution
+and is used in scenarios where input example belongs to only one class in multi-class classification problems.
+
+
+In the CNN example, what does the Flatten layer do?
+--> In the example, the flatten layer converts the 3D output to 1D before passing through more dense layers.
+
+
+In the CNN example, what does the Dense layer do?
+--> Dense layers perform classification.
+
+
+In the CNN example, why does the height and width get smaller for each convolutional layer?
+--> The height and width get smaller with each convolutional layer because the smaller the region, more easily it is able
+to capture abstract and complex features. This gives the leverage to retain important features, hence resulting into less
+computations. It helps the model to learn input hierarchies because as we move deeper and size decreases, it allows
+network to generalize better to variations in position.
+
+What does it mean to normalize the data? Where else have we seen normalization?
+--> Normalizing the data means to convert the actual range of data to a standard range of values. This helps in training
+the model faster. In the neural networks, we see normalization
+
+
+Why is it a problem that the Titanic data has different types and ranges?
+Why did we not have to worry about this with the decision tree?
+--> Titanic data has different types and ranges of data which makes it difficult to pass into numpy array and then to
+keras.Sequential data since it takes inout of same datatype.
+In decision tree, we dont face such problem because it makes splits based on the rank of features rather than the absolute
+magnitude. This allows us to use multi-categorical data with decision trees.
+
+
+What is a one-hot vector?
+--> One-hot vector is an array representation of categorical data where all the values are 0 except one value which is
+marked as 1, representing the presence of particular category.
+
+
+The example that shows how to manually slice the feature dictionary uses yield instead of return. Why is this?
+What's the difference between them, and why would you want to use yield?
+-->  When manually slicing the feature dictionary, it uses yield instead of return because yield not just return the value
+to calling function but also preserves the state of teh function whereas return immediately exits and specified value
+returned to function. Hence, in this case since we after slicing first training example and we need to continue to slice
+to train the model which requires to maintain the index or state of function. Therefore, we would use yield.
+
+As we know, encoding is a particularly important part of working with neural networks. Explain how text is encoded for an RNN.
+--> For RNN, the text encoding is done using text Vectorization Layer. Firstly we create the layer, and pass the dataset to
+layer's adapt method which sets layer's vocabulary (sorted by frequency). then, the layer can encode text into indices
+
+
+What does the Bidirectional layer do? What are the advantages and disadvantages of this approach?
+How does it compare to the way we processed sequence data with an HMM?
+--> Bidirectional Layer is like a wrapper that passes the input forward and backwards through RNN layer and then combine
+ to form final output. The main advantage is that beginning of the input doesn't need to be processed all the way through
+ every timestep to result into output whereas the disadvantage is since the words are added at the end, which makes it
+ difficult to efficiently stream predictions.
+ In HMM, the future state depends only on current state. the values are calculated using Markovian properties in the form
+ of emission and transition probabilities. This model helps the system to evolve over time with its hidden states.
+
+
+What is masking? Why do we need to use it in this example?
+--> Masking is a way which triggers sequence-processing layers to know that certain timesteps in input are missing and
+hence should be ignored while processing the data.
+In RNN example, different length of sequences were generated. Since we are using Sequential API, they have to be uniform
+in size. To make it uniform, we added padding to these varying sequences. But the model should be informed that some part
+of data is padded and should be skipped. Hence, masking was used in this example to handle different sequence lengths generated.
+
+
